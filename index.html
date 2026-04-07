@@ -301,7 +301,19 @@
       display: flex;
       flex-wrap: wrap;
       gap: 1rem;
+      align-items: center;
     }
+    .hero-btn-primary {
+      padding: 1.1rem 2.25rem;
+      font-size: 1.15rem;
+      letter-spacing: 0.1em;
+    }
+    .hero-btn-secondary {
+      font-size: 0.9rem;
+      opacity: 0.7;
+      border-color: rgba(255,255,255,0.35);
+    }
+    .hero-btn-secondary:hover { opacity: 1; }
     .scroll-indicator {
       position: absolute;
       bottom: 2.5rem;
@@ -1116,8 +1128,8 @@
         Fresh street food. Bold flavours. Come eat at the market or bring Danilo to your next event.
       </p>
       <div class="hero-ctas reveal reveal-delay-3">
-        <a href="#food" class="btn btn-primary">See The Food</a>
-        <a href="#contact" class="btn btn-outline">Enquire About Events</a>
+        <a href="#contact" class="btn btn-primary hero-btn-primary">Enquire About Events</a>
+        <a href="#food" class="btn btn-outline hero-btn-secondary">See The Food</a>
       </div>
     </div>
   </div>
