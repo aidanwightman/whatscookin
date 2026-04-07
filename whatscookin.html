@@ -1,0 +1,1562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>What's Cookin — Street Food. Portobello Market. Events.</title>
+  <meta name="description" content="What's Cookin is Danilo's street food stall at Portobello Market, Notting Hill. Fresh, bold food for events, weddings, festivals and private parties across London." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── RESET & BASE ─────────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      background-color: #1a1a1a;
+      color: #f0ebe2;
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    img { display: block; width: 100%; height: 100%; object-fit: cover; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+    button, input, select, textarea { font-family: inherit; }
+
+    /* ─── CSS VARIABLES ────────────────────────────────────────────────────── */
+    :root {
+      --bg-primary: #1a1a1a;
+      --bg-secondary: #242424;
+      --accent: #e8650a;
+      --accent-hover: #d4580a;
+      --cream: #f5f0e8;
+      --text-light: #f0ebe2;
+      --text-muted: #a89880;
+      --border: rgba(255,255,255,0.08);
+    }
+
+    /* ─── TYPOGRAPHY HELPERS ───────────────────────────────────────────────── */
+    .headline {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+    }
+    .label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+    }
+
+    /* ─── BUTTONS ──────────────────────────────────────────────────────────── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.85rem 1.75rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s ease, color 0.2s ease, transform 0.15s ease;
+    }
+    .btn:active { transform: scale(0.97); }
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+    }
+    .btn-primary:hover { background: var(--accent-hover); }
+    .btn-outline {
+      background: transparent;
+      color: var(--text-light);
+      border: 2px solid rgba(255,255,255,0.5);
+    }
+    .btn-outline:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .btn-dark {
+      background: #1a1a1a;
+      color: var(--text-light);
+    }
+    .btn-dark:hover { background: #111; }
+
+    /* ─── SECTION SPACING ──────────────────────────────────────────────────── */
+    section { padding: 6rem 0; }
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    .section-label {
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+    .section-title {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      margin-bottom: 1.25rem;
+    }
+    .section-sub {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      max-width: 580px;
+      line-height: 1.7;
+    }
+
+    /* ─── FADE-IN ANIMATION ────────────────────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* ════════════════════════════════════════════════════════════════════════ */
+    /* 1. NAV                                                                   */
+    /* ════════════════════════════════════════════════════════════════════════ */
+    nav#main-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: rgba(26, 26, 26, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s ease, background 0.3s ease, padding 0.3s ease;
+      padding: 1.25rem 0;
+    }
+    nav#main-nav.scrolled {
+      border-color: var(--border);
+      background: rgba(26, 26, 26, 0.98);
+      padding: 0.85rem 0;
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 1.45rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--text-light);
+    }
+    .nav-logo span { color: var(--accent); }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2.25rem;
+    }
+    .nav-links a {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 500;
+      font-size: 0.95rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text-light); }
+    .nav-links .btn {
+      padding: 0.55rem 1.25rem;
+      font-size: 0.9rem;
+    }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 32px;
+      height: 32px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 0;
+    }
+    .hamburger span {
+      display: block;
+      height: 2px;
+      background: var(--text-light);
+      border-radius: 2px;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      gap: 0;
+      background: var(--bg-secondary);
+      border-top: 1px solid var(--border);
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 600;
+      font-size: 1.1rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+      transition: color 0.2s, background 0.2s;
+    }
+    .mobile-menu a:hover { color: var(--text-light); background: rgba(255,255,255,0.03); }
+    .mobile-menu .btn {
+      margin: 1rem 1.5rem;
+      justify-content: center;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+    }
+
+    /* ════════════════════════════════════════════════════════════════════════ */
+    /* 2. HERO                                                                  */
+    /* ════════════════════════════════════════════════════════════════════════ */
+    #hero {
+      position: relative;
+      height: 100svh;
+      min-height: 600px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      /* IMAGE: Dark atmospheric street food stall at night — fire, steam, sizzling grill, warm amber light, moody */
+      background: linear-gradient(135deg, #0d0d0d 0%, #1c1207 40%, #2a1a08 70%, #1a1a1a 100%);
+      z-index: 0;
+    }
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.55) 60%, rgba(0,0,0,0.85) 100%);
+    }
+    /* Texture overlay */
+    .hero-bg::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(ellipse at 20% 50%, rgba(232,101,10,0.12) 0%, transparent 60%),
+                        radial-gradient(ellipse at 80% 20%, rgba(232,101,10,0.06) 0%, transparent 50%);
+      z-index: 1;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 820px;
+    }
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 2.5rem;
+      height: 2px;
+      background: var(--accent);
+    }
+    .hero-title {
+      font-size: clamp(4rem, 12vw, 9rem);
+      margin-bottom: 1.25rem;
+      color: var(--cream);
+    }
+    .hero-title .accent-word { color: var(--accent); }
+    .hero-sub {
+      font-size: clamp(1.05rem, 2.5vw, 1.3rem);
+      color: var(--text-muted);
+      max-width: 520px;
+      margin-bottom: 2.5rem;
+      line-height: 1.6;
+    }
+    .hero-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .scroll-indicator {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      opacity: 0.45;
+    }
+    .scroll-indicator span {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+    .scroll-arrow {
+      width: 20px;
+      height: 20px;
+      border-right: 2px solid var(--text-light);
+      border-bottom: 2px solid var(--text-light);
+      transform: rotate(45deg);
+      animation: bounce 1.8s ease infinite;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: rotate(45deg) translateY(0); }
+      50% { transform: rotate(45deg) translateY(5px); }
+    }
+
+    /* ════════════════════════════════════════════════════════════════════════ */
+    /* 3. FOOD SHOWCASE                                                         */
+    /* ════════════════════════════════════════════════════════════════════════ */
+    #food { background: var(--bg-secondary); }
+    .food-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 2rem;
+      margin-bottom: 3.5rem;
+      flex-wrap: wrap;
+    }
+    .food-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: auto auto;
+      gap: 0.75rem;
+      margin-bottom: 3rem;
+    }
+    .food-grid .card-tall { grid-row: span 2; }
+    .food-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 2px;
+      cursor: pointer;
+    }
+    .food-card .card-img {
+      height: 100%;
+      min-height: 260px;
+      transition: transform 0.5s ease;
+    }
+    .food-card:hover .card-img { transform: scale(1.04); }
+    .food-card.card-tall .card-img { min-height: 560px; }
+    /* Placeholder image backgrounds */
+    .food-card:nth-child(1) .card-img {
+      /* IMAGE: Close-up of sizzling jerk chicken on a cast-iron grill, charred edges, dark moody lighting, steam rising */
+      background: linear-gradient(160deg, #2d1a0e 0%, #4a2912 50%, #1a0d05 100%);
+    }
+    .food-card:nth-child(2) .card-img {
+      /* IMAGE: Loaded dirty fries topped with pulled pork, cheese sauce, jalapeños — overhead shot, dark slate surface */
+      background: linear-gradient(160deg, #1a1205 0%, #3d2a0a 50%, #0d0a02 100%);
+    }
+    .food-card:nth-child(3) .card-img {
+      /* IMAGE: Halloumi wrap being folded, vibrant colours — greens, reds, golden bread — natural light, close-up */
+      background: linear-gradient(160deg, #0e1a0a 0%, #1f3512 50%, #080f05 100%);
+    }
+    .food-card:nth-child(4) .card-img {
+      /* IMAGE: Smoky BBQ ribs on a wooden board, sauce glistening, dark background, top-down angle */
+      background: linear-gradient(160deg, #1a0a0a 0%, #3d1212 50%, #0d0404 100%);
+    }
+    .food-card:nth-child(5) .card-img {
+      /* IMAGE: Fresh-cut chips in a paper cone, sea salt visible, warm golden hue, bokeh background of market */
+      background: linear-gradient(160deg, #1a1508 0%, #3d3012 50%, #0d0b04 100%);
+    }
+    .food-card-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 55%);
+      display: flex;
+      align-items: flex-end;
+      padding: 1.25rem;
+    }
+    .food-card-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 1.4rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: #fff;
+      line-height: 1.1;
+    }
+    .food-philosophy {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      padding: 2.25rem 2.5rem;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+    .food-philosophy p {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      max-width: 580px;
+      line-height: 1.7;
+    }
+    .food-philosophy p strong {
+      color: var(--text-light);
+      font-weight: 500;
+    }
+
+    @media (max-width: 768px) {
+      .food-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .food-card.card-tall { grid-row: span 1; }
+      .food-card.card-tall .card-img { min-height: 260px; }
+      .food-grid .card-wide { grid-column: span 2; }
+    }
+    @media (max-width: 480px) {
+      .food-grid { grid-template-columns: 1fr; }
+      .food-grid .card-wide { grid-column: span 1; }
+    }
+
+    /* ════════════════════════════════════════════════════════════════════════ */
+    /* 4. EVENTS & CATERING                                                     */
+    /* ════════════════════════════════════════════════════════════════════════ */
+    #events { background: var(--bg-primary); padding-bottom: 0; }
+    .events-header { max-width: 700px; margin-bottom: 4rem; }
+    .events-header .section-sub { max-width: 100%; }
+    .event-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      margin-bottom: 4rem;
+    }
+    .event-card {
+      background: var(--bg-secondary);
+      padding: 2.5rem 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      transition: background 0.2s;
+    }
+    .event-card:hover { background: #2c2c2c; }
+    .event-icon {
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .event-icon svg {
+      width: 36px;
+      height: 36px;
+      stroke: var(--accent);
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .event-card-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 1.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      line-height: 1.1;
+    }
+    .event-card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      flex: 1;
+    }
+
+    /* Trust bar */
+    .trust-bar {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 0;
+    }
+    .trust-stat {
+      background: var(--bg-primary);
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+    }
+    .trust-stat .number {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: clamp(2rem, 4vw, 3rem);
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+    .trust-stat .desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 500;
+    }
+
+    /* CTA Banner */
+    .events-cta-banner {
+      background: var(--accent);
+      padding: 4rem 0;
+      text-align: center;
+    }
+    .events-cta-banner h2 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      color: #fff;
+      margin-bottom: 1.5rem;
+    }
+    .events-cta-banner .btn-dark {
+      font-size: 1rem;
+    }
+
+    @media (max-width: 900px) {
+      .event-cards { grid-template-columns: 1fr; }
+      .trust-bar { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 480px) {
+      .trust-bar { grid-template-columns: 1fr 1fr; }
+    }
+
+    /* ════════════════════════════════════════════════════════════════════════ */
+    /* 5. ABOUT DANILO                                                          */
+    /* ════════════════════════════════════════════════════════════════════════ */
+    #about { background: var(--bg-secondary); }
+    .about-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+    .about-image-wrap {
+      position: relative;
+      aspect-ratio: 3/4;
+      overflow: hidden;
+    }
+    .about-image {
+      width: 100%;
+      height: 100%;
+      /* IMAGE: Danilo at his market stall — Japanese-style bandana, shaved head, beard, smiling or focused on cooking — warm natural light, Portobello Market background */
+      background: linear-gradient(160deg, #1a1205 0%, #2d2010 40%, #0d0a05 100%);
+    }
+    .about-image-badge {
+      position: absolute;
+      bottom: 1.5rem;
+      right: -1rem;
+      background: var(--accent);
+      color: #fff;
+      padding: 1.25rem 1.5rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      line-height: 1.4;
+    }
+    .about-text .section-label { margin-bottom: 0.75rem; }
+    .about-text .section-title { margin-bottom: 1.5rem; }
+    .about-text p {
+      color: var(--text-muted);
+      line-height: 1.8;
+      margin-bottom: 1.25rem;
+      font-size: 0.975rem;
+    }
+    .about-text p:last-of-type { margin-bottom: 2rem; }
+    .about-brands {
+      padding: 1.25rem 1.5rem;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.02);
+    }
+    .about-brands p {
+      color: var(--text-muted);
+      font-size: 0.875rem;
+      margin: 0;
+    }
+    .about-brands a {
+      color: var(--accent);
+      font-weight: 500;
+    }
+    .about-brands a:hover { text-decoration: underline; }
+
+    @media (max-width: 800px) {
+      .about-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .about-image-wrap { aspect-ratio: 4/3; }
+      .about-image-badge { right: 0; }
+    }
+
+    /* ════════════════════════════════════════════════════════════════════════ */
+    /* 6. FIND US                                                               */
+    /* ════════════════════════════════════════════════════════════════════════ */
+    #find-us { background: var(--bg-primary); }
+    .find-us-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    .find-us-info { }
+    .market-detail {
+      display: flex;
+      gap: 1.25rem;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .market-detail:first-of-type { border-top: 1px solid var(--border); }
+    .detail-icon {
+      flex-shrink: 0;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .detail-icon svg {
+      width: 24px;
+      height: 24px;
+      stroke: var(--accent);
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .detail-body .detail-label {
+      color: var(--accent);
+      font-size: 0.7rem;
+      margin-bottom: 0.3rem;
+    }
+    .detail-body p {
+      color: var(--text-light);
+      font-size: 0.975rem;
+    }
+    .detail-body p.sub {
+      color: var(--text-muted);
+      font-size: 0.875rem;
+      margin-top: 0.2rem;
+    }
+    .find-us-note {
+      margin-top: 1.75rem;
+      padding: 1.25rem 1.5rem;
+      border-left: 3px solid var(--accent);
+      background: rgba(232,101,10,0.06);
+    }
+    .find-us-note p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+    .map-placeholder {
+      aspect-ratio: 4/3;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      /* IMAGE: Static Google Maps embed centred on Portobello Market, Notting Hill W11 */
+      position: relative;
+      overflow: hidden;
+    }
+    .map-placeholder::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 50%, rgba(232,101,10,0.05) 0%, transparent 70%);
+    }
+    .map-placeholder svg {
+      width: 48px;
+      height: 48px;
+      stroke: var(--accent);
+      fill: none;
+      stroke-width: 1.25;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      opacity: 0.7;
+    }
+    .map-placeholder p {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .map-placeholder a {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 600;
+      font-size: 0.85rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      border: 1px solid rgba(232,101,10,0.4);
+      padding: 0.5rem 1.25rem;
+      transition: background 0.2s;
+    }
+    .map-placeholder a:hover { background: rgba(232,101,10,0.1); }
+
+    @media (max-width: 800px) {
+      .find-us-inner { grid-template-columns: 1fr; }
+    }
+
+    /* ════════════════════════════════════════════════════════════════════════ */
+    /* 7. TESTIMONIALS                                                          */
+    /* ════════════════════════════════════════════════════════════════════════ */
+    #testimonials { background: var(--bg-secondary); }
+    .testimonials-header { text-align: center; margin-bottom: 3.5rem; }
+    .testimonials-header .section-sub { margin: 0 auto; text-align: center; }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .testimonial-card {
+      background: var(--bg-primary);
+      border: 1px solid var(--border);
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      transition: border-color 0.2s;
+    }
+    .testimonial-card:hover { border-color: rgba(232,101,10,0.3); }
+    .stars {
+      display: flex;
+      gap: 3px;
+      color: var(--accent);
+      font-size: 1.1rem;
+    }
+    .testimonial-quote {
+      font-size: 0.975rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+      flex: 1;
+      font-style: italic;
+    }
+    .testimonial-author {
+      border-top: 1px solid var(--border);
+      padding-top: 1rem;
+    }
+    .testimonial-author strong {
+      display: block;
+      color: var(--text-light);
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+    .testimonial-author span {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    @media (max-width: 900px) {
+      .testimonials-grid { grid-template-columns: 1fr; max-width: 520px; margin: 0 auto; }
+    }
+
+    /* ════════════════════════════════════════════════════════════════════════ */
+    /* 8. CONTACT                                                               */
+    /* ════════════════════════════════════════════════════════════════════════ */
+    #contact { background: var(--bg-primary); }
+    .contact-inner {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 5rem;
+      align-items: start;
+    }
+    .contact-info .section-title { margin-bottom: 1.25rem; }
+    .contact-info .section-sub { margin-bottom: 2.5rem; }
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 0.875rem;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+    .contact-link:hover { color: var(--text-light); }
+    .contact-link svg {
+      width: 20px;
+      height: 20px;
+      stroke: var(--accent);
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      flex-shrink: 0;
+    }
+
+    /* Form */
+    .enquiry-form { display: flex; flex-direction: column; gap: 1.25rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+    .form-group { display: flex; flex-direction: column; gap: 0.45rem; }
+    .form-group label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 500;
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      color: var(--text-light);
+      padding: 0.875rem 1rem;
+      font-size: 0.95rem;
+      transition: border-color 0.2s;
+      outline: none;
+      width: 100%;
+      border-radius: 0;
+      -webkit-appearance: none;
+    }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: var(--text-muted); opacity: 0.6; }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: var(--accent); }
+    .form-group select {
+      cursor: pointer;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23a89880' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      padding-right: 2.5rem;
+    }
+    .form-group select option { background: var(--bg-secondary); }
+    .form-group textarea { resize: vertical; min-height: 120px; }
+    .form-submit { margin-top: 0.5rem; }
+    .form-submit .btn { width: 100%; justify-content: center; padding: 1rem; font-size: 1.05rem; }
+    .form-success {
+      display: none;
+      padding: 1.5rem;
+      background: rgba(232,101,10,0.1);
+      border: 1px solid rgba(232,101,10,0.3);
+      text-align: center;
+    }
+    .form-success.visible { display: block; }
+    .form-success p {
+      color: var(--text-light);
+      font-size: 1rem;
+    }
+    .form-success strong { color: var(--accent); }
+
+    @media (max-width: 900px) {
+      .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+
+    /* ════════════════════════════════════════════════════════════════════════ */
+    /* 9. FOOTER                                                                */
+    /* ════════════════════════════════════════════════════════════════════════ */
+    footer {
+      background: #111;
+      border-top: 1px solid var(--border);
+      padding: 3.5rem 0 2rem;
+    }
+    .footer-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 3rem;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+    .footer-brand { max-width: 280px; }
+    .footer-logo {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 1.5rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      margin-bottom: 0.875rem;
+    }
+    .footer-logo span { color: var(--accent); }
+    .footer-brand p {
+      color: var(--text-muted);
+      font-size: 0.875rem;
+      line-height: 1.65;
+    }
+    .footer-nav {
+      display: flex;
+      gap: 4rem;
+      flex-wrap: wrap;
+    }
+    .footer-nav-group h4 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 600;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+    .footer-nav-group ul {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+    .footer-nav-group a {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+    .footer-nav-group a:hover { color: var(--text-light); }
+    .footer-social {
+      display: flex;
+      gap: 0.75rem;
+    }
+    .social-btn {
+      width: 40px;
+      height: 40px;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .social-btn:hover { border-color: var(--accent); background: rgba(232,101,10,0.1); }
+    .social-btn svg {
+      width: 18px;
+      height: 18px;
+      stroke: var(--text-muted);
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition: stroke 0.2s;
+    }
+    .social-btn:hover svg { stroke: var(--accent); }
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 2rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-bottom p {
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      line-height: 1.6;
+    }
+    .footer-family {
+      color: var(--text-muted);
+      font-size: 0.8rem;
+    }
+    .footer-family a {
+      color: var(--accent);
+      transition: opacity 0.2s;
+    }
+    .footer-family a:hover { opacity: 0.8; }
+
+    /* ─── UTILITY ──────────────────────────────────────────────────────────── */
+    @media (max-width: 768px) {
+      section { padding: 4rem 0; }
+      .food-header { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════
+     NAV
+═══════════════════════════════════════════════════════════════════════════ -->
+<nav id="main-nav" role="navigation" aria-label="Main navigation">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo">What's <span>Cookin</span></a>
+      <ul class="nav-links" role="list">
+        <li><a href="#food">Food</a></li>
+        <li><a href="#events">Events</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#find-us">Find Us</a></li>
+        <li><a href="#contact" class="btn btn-primary">Book Now</a></li>
+      </ul>
+      <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <div class="mobile-menu" role="list">
+    <a href="#food" role="listitem">Food</a>
+    <a href="#events" role="listitem">Events</a>
+    <a href="#about" role="listitem">About</a>
+    <a href="#find-us" role="listitem">Find Us</a>
+    <a href="#contact" class="btn btn-primary" role="listitem">Book Now</a>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════
+     HERO
+═══════════════════════════════════════════════════════════════════════════ -->
+<section id="hero" aria-label="Hero">
+  <div class="hero-bg">
+    <!-- IMAGE: Dark atmospheric street food stall — fire, sizzling grill, steam, warm amber light at night, Portobello Market crowd in background, golden bokeh -->
+  </div>
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-eyebrow reveal">
+        <span class="label" style="color: var(--text-muted);">Portobello Market, Notting Hill</span>
+      </div>
+      <h1 class="headline hero-title reveal reveal-delay-1">
+        What's<br /><span class="accent-word">Cookin?</span>
+      </h1>
+      <p class="hero-sub reveal reveal-delay-2">
+        Fresh street food. Bold flavours. Come eat at the market or bring Danilo to your next event.
+      </p>
+      <div class="hero-ctas reveal reveal-delay-3">
+        <a href="#food" class="btn btn-primary">See The Food</a>
+        <a href="#contact" class="btn btn-outline">Enquire About Events</a>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-indicator" aria-hidden="true">
+    <span>Scroll</span>
+    <div class="scroll-arrow"></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════
+     FOOD SHOWCASE
+═══════════════════════════════════════════════════════════════════════════ -->
+<section id="food" aria-labelledby="food-title">
+  <div class="container">
+    <div class="food-header">
+      <div>
+        <p class="label section-label reveal">What We Make</p>
+        <h2 class="headline section-title reveal reveal-delay-1" id="food-title">On The Grill</h2>
+        <p class="section-sub reveal reveal-delay-2">Whatever's on, it's worth stopping for.</p>
+      </div>
+      <a href="#contact" class="btn btn-outline reveal reveal-delay-2">See Full Menu</a>
+    </div>
+
+    <div class="food-grid">
+      <div class="food-card card-tall reveal">
+        <div class="card-img">
+          <!-- IMAGE: Close-up of sizzling jerk chicken on a cast-iron grill, charred edges, dark moody lighting, orange flames, steam rising -->
+        </div>
+        <div class="food-card-overlay">
+          <span class="food-card-name">Jerk Chicken</span>
+        </div>
+      </div>
+      <div class="food-card reveal reveal-delay-1">
+        <div class="card-img">
+          <!-- IMAGE: Loaded dirty fries in a black paper tray — pulled pork, melted cheese sauce, sliced jalapeños, spring onion — overhead dark slate surface -->
+        </div>
+        <div class="food-card-overlay">
+          <span class="food-card-name">Loaded Fries</span>
+        </div>
+      </div>
+      <div class="food-card reveal reveal-delay-2">
+        <div class="card-img">
+          <!-- IMAGE: Halloumi wrap cut in half, vibrant fillings visible — roasted red pepper, rocket, tzatziki, golden halloumi — warm natural light -->
+        </div>
+        <div class="food-card-overlay">
+          <span class="food-card-name">Halloumi Wrap</span>
+        </div>
+      </div>
+      <div class="food-card reveal reveal-delay-1">
+        <div class="card-img">
+          <!-- IMAGE: Smoky BBQ beef brisket on a dark wooden board, sauce glistening, pickles on the side, top-down moody shot -->
+        </div>
+        <div class="food-card-overlay">
+          <span class="food-card-name">BBQ Brisket</span>
+        </div>
+      </div>
+      <div class="food-card card-wide reveal reveal-delay-2">
+        <div class="card-img">
+          <!-- IMAGE: Vibrant wide shot of the full spread — multiple dishes on a dark surface, steam rising, colour and texture, Danilo's bandana in frame -->
+        </div>
+        <div class="food-card-overlay">
+          <span class="food-card-name">Today's Special</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="food-philosophy reveal">
+      <p>
+        <strong>No fixed menu. Always fresh.</strong> Danilo cooks what's good — whatever's in season, whatever's on the grill. Flavours change. The quality doesn't.
+      </p>
+      <a href="#contact" class="btn btn-primary">Enquire About Menus</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════
+     EVENTS & CATERING
+═══════════════════════════════════════════════════════════════════════════ -->
+<section id="events" aria-labelledby="events-title">
+  <div class="container">
+    <div class="events-header">
+      <p class="label section-label reveal">Events & Catering</p>
+      <h2 class="headline section-title reveal reveal-delay-1" id="events-title">Bring What's Cookin<br />To Your Event</h2>
+      <p class="section-sub reveal reveal-delay-2">
+        From Portobello to the festival field — Danilo's been feeding crowds for years. Whatever your event, we'll make sure the food's the highlight.
+      </p>
+    </div>
+  </div>
+
+  <div class="event-cards">
+    <!-- Weddings -->
+    <div class="event-card reveal">
+      <div class="event-icon">
+        <!-- IMAGE: Optional wedding icon or romantic venue photo -->
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+        </svg>
+      </div>
+      <h3 class="event-card-title">Weddings</h3>
+      <p>Make your wedding day unforgettable. Fresh, bold food that your guests will be talking about long after the last dance. Relaxed service, serious flavour — exactly what your celebration deserves.</p>
+      <a href="#contact" class="btn btn-primary">Get A Quote</a>
+    </div>
+
+    <!-- Festivals & Markets -->
+    <div class="event-card reveal reveal-delay-1">
+      <div class="event-icon">
+        <!-- IMAGE: Optional festival icon or crowd photo -->
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+        </svg>
+      </div>
+      <h3 class="event-card-title">Festivals & Markets</h3>
+      <p>Fully equipped for high-volume festival catering. We've done the big stages and we know how to run a busy service. Fast, consistent, and always good — even at volume.</p>
+      <a href="#contact" class="btn btn-primary">Get A Quote</a>
+    </div>
+
+    <!-- Private & Corporate -->
+    <div class="event-card reveal reveal-delay-2">
+      <div class="event-icon">
+        <!-- IMAGE: Optional corporate/party icon or event photo -->
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+          <circle cx="9" cy="7" r="4"/>
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+          <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+        </svg>
+      </div>
+      <h3 class="event-card-title">Private Events & Corporate</h3>
+      <p>Birthday, corporate lunch, private party, pop-up — if you need quality food for a crowd, we've got you. Bespoke menus, reliable service, and Danilo's personality in every dish.</p>
+      <a href="#contact" class="btn btn-primary">Get A Quote</a>
+    </div>
+  </div>
+
+  <!-- Trust Bar -->
+  <div class="trust-bar">
+    <div class="trust-stat reveal">
+      <div class="number">100+</div>
+      <div class="desc">Events Catered</div>
+    </div>
+    <div class="trust-stat reveal reveal-delay-1">
+      <div class="number">10+</div>
+      <div class="desc">Years At Portobello</div>
+    </div>
+    <div class="trust-stat reveal reveal-delay-2">
+      <div class="number">500+</div>
+      <div class="desc">Satisfied Guests Per Event</div>
+    </div>
+    <div class="trust-stat reveal reveal-delay-3">
+      <div class="number">London<br />&amp; Beyond</div>
+      <div class="desc">We Travel To You</div>
+    </div>
+  </div>
+
+  <!-- CTA Banner -->
+  <div class="events-cta-banner">
+    <div class="container">
+      <h2 class="headline reveal">Got an event coming up?<br />Let's talk.</h2>
+      <a href="#contact" class="btn btn-dark reveal reveal-delay-1">Book A Consultation</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════
+     ABOUT DANILO
+═══════════════════════════════════════════════════════════════════════════ -->
+<section id="about" aria-labelledby="about-title">
+  <div class="container">
+    <div class="about-inner">
+      <div class="about-image-wrap reveal">
+        <div class="about-image">
+          <!-- IMAGE: Danilo at his Portobello Market stall — Japanese-style bandana, shaved head, beard, focused expression or big smile — warm golden-hour light, market atmosphere -->
+        </div>
+        <div class="about-image-badge">
+          Portobello<br />Market<br />London W11
+        </div>
+      </div>
+      <div class="about-text">
+        <p class="label section-label reveal">The Man Behind The Stall</p>
+        <h2 class="headline section-title reveal reveal-delay-1" id="about-title">Built On<br />Character.</h2>
+        <p class="reveal reveal-delay-1">
+          Danilo has been cooking at Portobello Market for over a decade. He grew up in the food, built his reputation dish by dish, and he hasn't stopped since. What's Cookin isn't a brand — it's him.
+        </p>
+        <p class="reveal reveal-delay-2">
+          You'll spot him by the bandana. Japanese-style, every day — it's as much a part of the stall as the grill. Behind it is someone who takes food seriously without taking themselves too seriously.
+        </p>
+        <p class="reveal reveal-delay-2">
+          The food is honest: fresh ingredients, bold flavour, no shortcuts. The menu changes with what's good. If it's not right, it's not going on the grill. Simple as that.
+        </p>
+        <p class="reveal reveal-delay-3">
+          From wedding catering to festival fields, Danilo brings the same energy whether he's feeding twenty or two hundred. The stall is home. Everywhere else is just a bigger kitchen.
+        </p>
+        <div class="about-brands reveal reveal-delay-3">
+          <p>What's Cookin is part of the Danilo family of brands. Also find us at <a href="#">Mr Chips</a> and <a href="#">Notting Italy</a> — coming soon.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════
+     FIND US
+═══════════════════════════════════════════════════════════════════════════ -->
+<section id="find-us" aria-labelledby="findus-title">
+  <div class="container">
+    <p class="label section-label reveal">Find Us</p>
+    <h2 class="headline section-title reveal reveal-delay-1" id="findus-title">Come To<br />The Market.</h2>
+    <div class="find-us-inner" style="margin-top: 3rem;">
+      <div class="find-us-info">
+        <div class="market-detail reveal">
+          <div class="detail-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+              <circle cx="12" cy="10" r="3"/>
+            </svg>
+          </div>
+          <div class="detail-body">
+            <span class="label detail-label">Location</span>
+            <p>Portobello Market</p>
+            <p class="sub">Portobello Road, Notting Hill, London W11</p>
+          </div>
+        </div>
+        <div class="market-detail reveal reveal-delay-1">
+          <div class="detail-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"/>
+              <polyline points="12 6 12 12 16 14"/>
+            </svg>
+          </div>
+          <div class="detail-body">
+            <span class="label detail-label">Trading Hours</span>
+            <p>Saturday &amp; Sunday — come find us</p>
+            <p class="sub">Hours vary — follow us on Instagram for updates</p>
+          </div>
+        </div>
+        <div class="market-detail reveal reveal-delay-2">
+          <div class="detail-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="1" y="3" width="15" height="13"/>
+              <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/>
+              <circle cx="5.5" cy="18.5" r="2.5"/>
+              <circle cx="18.5" cy="18.5" r="2.5"/>
+            </svg>
+          </div>
+          <div class="detail-body">
+            <span class="label detail-label">Events & Travel</span>
+            <p>Available across London &amp; beyond</p>
+            <p class="sub">Weddings, festivals, private events — we come to you</p>
+          </div>
+        </div>
+
+        <div class="find-us-note reveal reveal-delay-3">
+          <p>Can't make it to the market? We come to you — <a href="#contact" style="color: var(--accent);">enquire about event catering</a> and Danilo will get back to you directly.</p>
+        </div>
+      </div>
+
+      <div class="map-placeholder reveal reveal-delay-1" role="img" aria-label="Map showing Portobello Market location">
+        <!-- IMAGE: Embedded Google Maps iframe centred on Portobello Road Market, Notting Hill, London W11 2DY -->
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+          <circle cx="12" cy="10" r="3"/>
+        </svg>
+        <p>Portobello Market, W11</p>
+        <a href="https://maps.google.com/?q=Portobello+Market+Notting+Hill+London" target="_blank" rel="noopener noreferrer">Open In Maps</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════
+     TESTIMONIALS
+═══════════════════════════════════════════════════════════════════════════ -->
+<section id="testimonials" aria-labelledby="testimonials-title">
+  <div class="container">
+    <div class="testimonials-header">
+      <p class="label section-label reveal">What People Say</p>
+      <h2 class="headline section-title reveal reveal-delay-1" id="testimonials-title">Don't Take<br />Our Word For It.</h2>
+      <p class="section-sub reveal reveal-delay-2">From market regulars to wedding guests — the food speaks for itself.</p>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card reveal">
+        <div class="stars" aria-label="5 stars">★★★★★</div>
+        <p class="testimonial-quote">"We had Danilo cater our wedding reception and it was the best decision we made. The food was incredible — every single guest was talking about it. Relaxed, professional, and genuinely delicious. Cannot recommend enough."</p>
+        <div class="testimonial-author">
+          <strong>Sophie & James T.</strong>
+          <span>Wedding Catering — London</span>
+        </div>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-1">
+        <div class="stars" aria-label="5 stars">★★★★★</div>
+        <p class="testimonial-quote">"We've had What's Cookin at our festival for two years running. High volume, fast service, and the quality never dips. Danilo runs a tight operation and the crowd loves him. He's booked for next year already."</p>
+        <div class="testimonial-author">
+          <strong>Marcus O.</strong>
+          <span>Festival Organiser — West London</span>
+        </div>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-2">
+        <div class="stars" aria-label="5 stars">★★★★★</div>
+        <p class="testimonial-quote">"I've been going to Danilo's stall at Portobello for years. It's always different, always fresh, always brilliant. Some of the best street food in London — no question. The man knows what he's doing."</p>
+        <div class="testimonial-author">
+          <strong>Priya M.</strong>
+          <span>Market Regular — Notting Hill</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════
+     CONTACT
+═══════════════════════════════════════════════════════════════════════════ -->
+<section id="contact" aria-labelledby="contact-title">
+  <div class="container">
+    <div class="contact-inner">
+      <div class="contact-info">
+        <p class="label section-label reveal">Get In Touch</p>
+        <h2 class="headline section-title reveal reveal-delay-1" id="contact-title">Let's Make<br />Something Good.</h2>
+        <p class="section-sub reveal reveal-delay-2" style="margin-bottom: 2.5rem;">
+          Whether you're planning a wedding, running a festival, or just curious about the menu — drop us a message and Danilo will come back to you directly.
+        </p>
+        <div class="contact-links">
+          <a href="mailto:hello@whatscookin.co.uk" class="contact-link reveal reveal-delay-1">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+              <polyline points="22,6 12,13 2,6"/>
+            </svg>
+            hello@whatscookin.co.uk
+          </a>
+          <a href="https://instagram.com/whatscookinlondon" target="_blank" rel="noopener noreferrer" class="contact-link reveal reveal-delay-2">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+            </svg>
+            @whatscookinlondon
+          </a>
+        </div>
+      </div>
+
+      <div class="form-wrap">
+        <form class="enquiry-form reveal" id="enquiry-form" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Your Name</label>
+              <input type="text" id="name" name="name" placeholder="Jane Smith" required />
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" name="email" placeholder="jane@example.com" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone <span style="color: var(--text-muted); font-weight: 400;">(optional)</span></label>
+            <input type="tel" id="phone" name="phone" placeholder="+44 7700 000000" />
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="event-type">Event Type</label>
+              <select id="event-type" name="event-type" required>
+                <option value="" disabled selected>Select an option</option>
+                <option value="wedding">Wedding</option>
+                <option value="festival">Festival / Market</option>
+                <option value="private">Private Event</option>
+                <option value="corporate">Corporate</option>
+                <option value="other">Other</option>
+                <option value="hi">Just saying hi</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="event-date">Event Date <span style="color: var(--text-muted); font-weight: 400;">(optional)</span></label>
+              <input type="date" id="event-date" name="event-date" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="message">Your Message</label>
+            <textarea id="message" name="message" placeholder="Tell us about your event — guest numbers, location, any other details..." required></textarea>
+          </div>
+          <div class="form-submit">
+            <button type="submit" class="btn btn-primary">Send Enquiry</button>
+          </div>
+        </form>
+        <div class="form-success" id="form-success" role="alert" aria-live="polite">
+          <p><strong>Message sent.</strong> Danilo will be in touch shortly. Thanks for reaching out.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════════════════════════════════════ -->
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo">What's <span>Cookin</span></div>
+        <p>Street food at Portobello Market, Notting Hill. Events, weddings, and festivals across London &amp; beyond.</p>
+      </div>
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <div class="footer-nav-group">
+          <h4>Navigate</h4>
+          <ul>
+            <li><a href="#food">Food</a></li>
+            <li><a href="#events">Events</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#find-us">Find Us</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-nav-group">
+          <h4>Social</h4>
+          <div class="footer-social">
+            <a href="https://instagram.com/whatscookinlondon" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 What's Cookin. All rights reserved.</p>
+      <p class="footer-family">
+        Part of the Danilo family of brands —
+        also find us at <a href="#">Mr Chips</a> &amp; <a href="#">Notting Italy</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════
+     JAVASCRIPT
+═══════════════════════════════════════════════════════════════════════════ -->
+<script>
+  // ── NAV: scroll shrink + mobile hamburger ─────────────────────────────────
+  const nav = document.getElementById('main-nav');
+  const hamburger = document.querySelector('.hamburger');
+  const mobileMenu = document.querySelector('.mobile-menu');
+
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 50);
+  }, { passive: true });
+
+  hamburger.addEventListener('click', () => {
+    const isOpen = mobileMenu.classList.toggle('open');
+    hamburger.classList.toggle('open', isOpen);
+    hamburger.setAttribute('aria-expanded', isOpen);
+  });
+
+  // Close mobile menu on link click
+  mobileMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.remove('open');
+      hamburger.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // ── SMOOTH SCROLL (for older browsers) ───────────────────────────────────
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        const offset = nav.offsetHeight + 16;
+        const top = target.getBoundingClientRect().top + window.scrollY - offset;
+        window.scrollTo({ top, behavior: 'smooth' });
+      }
+    });
+  });
+
+  // ── REVEAL ON SCROLL ─────────────────────────────────────────────────────
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+  // ── FORM: submit feedback ─────────────────────────────────────────────────
+  const form = document.getElementById('enquiry-form');
+  const formSuccess = document.getElementById('form-success');
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const name = form.querySelector('#name').value.trim();
+    const email = form.querySelector('#email').value.trim();
+    const message = form.querySelector('#message').value.trim();
+    const eventType = form.querySelector('#event-type').value;
+
+    if (!name || !email || !message || !eventType) {
+      // Highlight empty required fields
+      [{ id: 'name', val: name }, { id: 'email', val: email }, { id: 'message', val: message }, { id: 'event-type', val: eventType }]
+        .forEach(({ id, val }) => {
+          const el = form.querySelector('#' + id);
+          el.style.borderColor = val ? 'var(--border)' : 'rgba(232,101,10,0.6)';
+        });
+      return;
+    }
+
+    // Show success
+    form.style.display = 'none';
+    formSuccess.classList.add('visible');
+  });
+</script>
+
+</body>
+</html>
