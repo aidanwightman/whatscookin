@@ -679,54 +679,35 @@
       font-size: 0.9rem;
       line-height: 1.6;
     }
-    .map-placeholder {
-      aspect-ratio: 4/3;
-      background: var(--bg-secondary);
-      border: 1px solid var(--border);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 1rem;
-      /* IMAGE: Static Google Maps embed centred on Portobello Market, Notting Hill W11 */
+    .map-wrap {
       position: relative;
+      aspect-ratio: 4/3;
+      border: 1px solid var(--border);
       overflow: hidden;
     }
-    .map-placeholder::before {
-      content: '';
+    .map-wrap iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+      filter: grayscale(30%) contrast(1.05);
+    }
+    .map-open-link {
       position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse at 50% 50%, rgba(232,101,10,0.05) 0%, transparent 70%);
-    }
-    .map-placeholder svg {
-      width: 48px;
-      height: 48px;
-      stroke: var(--accent);
-      fill: none;
-      stroke-width: 1.25;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      opacity: 0.7;
-    }
-    .map-placeholder p {
+      bottom: 1rem;
+      right: 1rem;
+      background: var(--accent);
+      color: #fff;
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 1rem;
+      font-weight: 700;
+      font-size: 0.8rem;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: var(--text-muted);
-    }
-    .map-placeholder a {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 600;
-      font-size: 0.85rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--accent);
-      border: 1px solid rgba(232,101,10,0.4);
-      padding: 0.5rem 1.25rem;
+      padding: 0.5rem 1rem;
       transition: background 0.2s;
+      z-index: 1;
     }
-    .map-placeholder a:hover { background: rgba(232,101,10,0.1); }
+    .map-open-link:hover { background: var(--accent-hover); }
 
     @media (max-width: 800px) {
       .find-us-inner { grid-template-columns: 1fr; }
@@ -1306,14 +1287,15 @@
         </div>
       </div>
 
-      <div class="map-placeholder reveal reveal-delay-1" role="img" aria-label="Map showing Portobello Market location">
-        <!-- IMAGE: Embedded Google Maps iframe centred on Portobello Road Market, Notting Hill, London W11 2DY -->
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-          <circle cx="12" cy="10" r="3"/>
-        </svg>
-        <p>Portobello Market, W11</p>
-        <a href="https://maps.google.com/?q=Portobello+Market+Notting+Hill+London" target="_blank" rel="noopener noreferrer">Open In Maps</a>
+      <div class="map-wrap reveal reveal-delay-1">
+        <iframe
+          src="https://maps.google.com/maps?q=51.5190665,-0.2072548&z=17&output=embed"
+          allowfullscreen
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="What's Cookin — Portobello Market location"
+        ></iframe>
+        <a class="map-open-link" href="https://maps.app.goo.gl/BUixYi6Sit1B99LZ7" target="_blank" rel="noopener noreferrer">Open in Google Maps ↗</a>
       </div>
     </div>
   </div>
