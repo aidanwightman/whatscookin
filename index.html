@@ -93,40 +93,6 @@
     /* ─── SECTION SPACING ──────────────────────────────────────────────────── */
     section { padding: 6rem 0; position: relative; }
 
-    /* ── SECTION TRANSITIONS ─────────────────────────────────────────────── */
-    /* Angled top edge on alternating sections */
-    #food::before,
-    #about::before,
-    #contact::before {
-      content: '';
-      position: absolute;
-      top: -40px;
-      left: 0; right: 0;
-      height: 80px;
-      background: inherit;
-      clip-path: polygon(0 50%, 100% 0, 100% 100%, 0 100%);
-      z-index: 0;
-    }
-    #food::before  { background: rgba(26,26,26,0.6); }
-    #about::before { background: rgba(26,26,26,0.6); }
-    #contact::before { background: rgba(26,26,26,0.6); }
-
-    /* Angled bottom edge */
-    #food::after,
-    #about::after,
-    #testimonials::after {
-      content: '';
-      position: absolute;
-      bottom: -40px;
-      left: 0; right: 0;
-      height: 80px;
-      z-index: 2;
-      pointer-events: none;
-    }
-    #food::after      { background: rgba(26,26,26,0.6); clip-path: polygon(0 0, 100% 0, 100% 50%, 0 100%); }
-    #about::after     { background: rgba(26,26,26,0.6); clip-path: polygon(0 0, 100% 0, 100% 100%, 0 50%); }
-    #testimonials::after { background: rgba(36,36,36,0.78); clip-path: polygon(0 0, 100% 0, 100% 50%, 0 100%); }
-
     /* Accent rule dividers */
     .section-divider {
       display: flex;
