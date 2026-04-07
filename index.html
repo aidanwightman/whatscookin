@@ -336,7 +336,7 @@
     /* ════════════════════════════════════════════════════════════════════════ */
     /* 3. FOOD SHOWCASE                                                         */
     /* ════════════════════════════════════════════════════════════════════════ */
-    #food { background: var(--bg-secondary); }
+    #food { background: rgba(36,36,36,0.82); }
     .food-header {
       display: flex;
       align-items: flex-end;
@@ -446,7 +446,7 @@
     /* ════════════════════════════════════════════════════════════════════════ */
     /* 4. EVENTS & CATERING                                                     */
     /* ════════════════════════════════════════════════════════════════════════ */
-    #events { background: var(--bg-primary); padding-bottom: 0; }
+    #events { background: transparent; padding-bottom: 0; }
     .events-header { max-width: 700px; margin-bottom: 4rem; }
     .events-header .section-sub { max-width: 100%; }
     .event-cards {
@@ -592,31 +592,35 @@
       font-size: 1rem;
     }
 
-    /* ── SECTION BACKGROUND SLIDESHOW (subtle, for dark sections) ────────── */
-    .section-bg-slides {
-      position: absolute;
+    /* ── GLOBAL FIXED BACKGROUND SLIDESHOW ──────────────────────────────── */
+    .page-bg {
+      position: fixed;
       inset: 0;
-      z-index: 0;
+      z-index: -1;
       overflow: hidden;
-      pointer-events: none;
     }
-    .section-bg-slides .slide {
+    .page-bg .slide {
       position: absolute;
       inset: 0;
       background-size: cover;
       background-position: center;
       opacity: 0;
       animation: imgFade 16s ease-in-out infinite;
-      filter: grayscale(60%) sepia(20%) contrast(1.05) brightness(0.3);
+      filter: grayscale(55%) sepia(25%) contrast(1.1) brightness(0.28) saturate(1.3);
       will-change: opacity;
     }
-    .section-bg-slides .slide:nth-child(1) { background-image: url('images/food-3.jpg'); animation-delay: 0s; }
-    .section-bg-slides .slide:nth-child(2) { background-image: url('images/food-5.webp'); animation-delay: 4s; }
-    .section-bg-slides .slide:nth-child(3) { background-image: url('images/about.jpg');  animation-delay: 8s; }
-    .section-bg-slides .slide:nth-child(4) { background-image: url('images/food-1.jpg'); animation-delay: 12s; }
-    /* Sections that use this need position:relative */
-    #testimonials, #find-us { position: relative; }
-    #testimonials > *, #find-us > * { position: relative; z-index: 1; }
+    .page-bg .slide:nth-child(1) { background-image: url('images/hero.jpg');   animation-delay: 0s; }
+    .page-bg .slide:nth-child(2) { background-image: url('images/food-3.jpg'); animation-delay: 4s; }
+    .page-bg .slide:nth-child(3) { background-image: url('images/food-5.webp');animation-delay: 8s; }
+    .page-bg .slide:nth-child(4) { background-image: url('images/food-4.jpg'); animation-delay: 12s; }
+    /* Dark warm overlay on top of all slides */
+    .page-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(160deg, rgba(15,8,2,0.55) 0%, rgba(10,5,0,0.45) 100%);
+      pointer-events: none;
+    }
 
     @media (max-width: 900px) {
       .event-cards { grid-template-columns: 1fr; }
@@ -629,7 +633,7 @@
     /* ════════════════════════════════════════════════════════════════════════ */
     /* 5. ABOUT DANILO                                                          */
     /* ════════════════════════════════════════════════════════════════════════ */
-    #about { background: var(--bg-secondary); }
+    #about { background: rgba(36,36,36,0.82); }
     .about-inner {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -696,7 +700,7 @@
     /* ════════════════════════════════════════════════════════════════════════ */
     /* 6. FIND US                                                               */
     /* ════════════════════════════════════════════════════════════════════════ */
-    #find-us { background: var(--bg-primary); }
+    #find-us { background: rgba(26,26,26,0.78); }
     .find-us-inner {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -790,7 +794,7 @@
     /* ════════════════════════════════════════════════════════════════════════ */
     /* 7. TESTIMONIALS                                                          */
     /* ════════════════════════════════════════════════════════════════════════ */
-    #testimonials { background: var(--bg-secondary); }
+    #testimonials { background: rgba(36,36,36,0.78); }
     .testimonials-header { text-align: center; margin-bottom: 3.5rem; }
     .testimonials-header .section-sub { margin: 0 auto; text-align: center; }
     .testimonials-grid {
@@ -846,7 +850,7 @@
     /* ════════════════════════════════════════════════════════════════════════ */
     /* 8. CONTACT                                                               */
     /* ════════════════════════════════════════════════════════════════════════ */
-    #contact { background: var(--bg-primary); }
+    #contact { background: rgba(26,26,26,0.82); }
     .contact-inner {
       display: grid;
       grid-template-columns: 1fr 1.2fr;
@@ -945,7 +949,7 @@
     /* 9. FOOTER                                                                */
     /* ════════════════════════════════════════════════════════════════════════ */
     footer {
-      background: #111;
+      background: rgba(10,10,10,0.88);
       border-top: 1px solid var(--border);
       padding: 3.5rem 0 2rem;
     }
@@ -1056,6 +1060,14 @@
 </head>
 
 <body>
+
+<!-- Fixed background slideshow — sits behind all page content -->
+<div class="page-bg" aria-hidden="true">
+  <div class="slide"></div>
+  <div class="slide"></div>
+  <div class="slide"></div>
+  <div class="slide"></div>
+</div>
 
 <!-- ═══════════════════════════════════════════════════════════════════════════
      NAV
@@ -1285,12 +1297,6 @@
      FIND US
 ═══════════════════════════════════════════════════════════════════════════ -->
 <section id="find-us" aria-labelledby="findus-title">
-  <div class="section-bg-slides" aria-hidden="true">
-    <div class="slide"></div>
-    <div class="slide"></div>
-    <div class="slide"></div>
-    <div class="slide"></div>
-  </div>
   <div class="container">
     <p class="label section-label reveal">Find Us</p>
     <h2 class="headline section-title reveal reveal-delay-1" id="findus-title">Come To<br />The Market.</h2>
@@ -1361,12 +1367,6 @@
      TESTIMONIALS
 ═══════════════════════════════════════════════════════════════════════════ -->
 <section id="testimonials" aria-labelledby="testimonials-title">
-  <div class="section-bg-slides" aria-hidden="true">
-    <div class="slide"></div>
-    <div class="slide"></div>
-    <div class="slide"></div>
-    <div class="slide"></div>
-  </div>
   <div class="container">
     <div class="testimonials-header">
       <p class="label section-label reveal">What People Say</p>
