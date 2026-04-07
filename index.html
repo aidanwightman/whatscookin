@@ -521,21 +521,12 @@
       transition: background 0.2s;
     }
     .event-card:hover { background: #2c2c2c; }
-    .event-icon {
-      width: 48px;
-      height: 48px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .event-icon svg {
-      width: 36px;
-      height: 36px;
-      stroke: var(--accent);
-      fill: none;
-      stroke-width: 1.5;
-      stroke-linecap: round;
-      stroke-linejoin: round;
+    .event-video {
+      width: calc(100% + 4rem);
+      margin: -2.5rem -2rem 0;
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+      display: block;
     }
     .event-card-title {
       font-family: 'Barlow Condensed', sans-serif;
@@ -1264,12 +1255,9 @@
   <div class="event-cards">
     <!-- Weddings -->
     <div class="event-card reveal">
-      <div class="event-icon">
-        <!-- IMAGE: Optional wedding icon or romantic venue photo -->
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-        </svg>
-      </div>
+      <video class="event-video" autoplay muted loop playsinline>
+        <source src="videos/vid-1.mp4" type="video/mp4">
+      </video>
       <h3 class="event-card-title">Weddings</h3>
       <p>Make your wedding day unforgettable. Fresh, bold food that your guests will be talking about long after the last dance. Relaxed service, serious flavour — exactly what your celebration deserves.</p>
       <a href="#contact" class="btn btn-primary">Get A Quote</a>
@@ -1277,12 +1265,9 @@
 
     <!-- Festivals & Markets -->
     <div class="event-card reveal reveal-delay-1">
-      <div class="event-icon">
-        <!-- IMAGE: Optional festival icon or crowd photo -->
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-        </svg>
-      </div>
+      <video class="event-video" autoplay muted loop playsinline>
+        <source src="videos/vid-2.mp4" type="video/mp4">
+      </video>
       <h3 class="event-card-title">Festivals & Markets</h3>
       <p>Fully equipped for high-volume festival catering. We've done the big stages and we know how to run a busy service. Fast, consistent, and always good — even at volume.</p>
       <a href="#contact" class="btn btn-primary">Get A Quote</a>
@@ -1290,15 +1275,9 @@
 
     <!-- Private & Corporate -->
     <div class="event-card reveal reveal-delay-2">
-      <div class="event-icon">
-        <!-- IMAGE: Optional corporate/party icon or event photo -->
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-          <circle cx="9" cy="7" r="4"/>
-          <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-          <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-        </svg>
-      </div>
+      <video class="event-video" autoplay muted loop playsinline>
+        <source src="videos/vid-3.mp4" type="video/mp4">
+      </video>
       <h3 class="event-card-title">Private Events & Corporate</h3>
       <p>Birthday, corporate lunch, private party, pop-up — if you need quality food for a crowd, we've got you. Bespoke menus, reliable service, and Danilo's personality in every dish.</p>
       <a href="#contact" class="btn btn-primary">Get A Quote</a>
