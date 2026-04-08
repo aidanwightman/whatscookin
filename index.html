@@ -579,6 +579,28 @@
       transition: background 0.2s;
     }
     .event-card:hover { background: #2c2c2c; }
+    .event-card-icon {
+      width: 48px; height: 48px;
+      background: rgba(255,213,46,0.1);
+      border: 1px solid rgba(255,213,46,0.25);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .event-card:hover .event-card-icon {
+      background: rgba(255,213,46,0.18);
+      border-color: rgba(255,213,46,0.5);
+    }
+    .event-card-icon svg {
+      width: 24px; height: 24px;
+      stroke: var(--accent);
+      fill: none;
+      stroke-width: 1.75;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
     .event-card-title {
       font-family: 'Fredoka One', sans-serif;
       font-weight: 700;
@@ -1403,6 +1425,10 @@
   <div class="event-cards">
     <!-- Weddings -->
     <div class="event-card reveal">
+      <div class="event-card-icon" aria-hidden="true">
+        <!-- rings / heart -->
+        <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      </div>
       <h3 class="event-card-title">Weddings</h3>
       <p>Make your wedding day unforgettable. Fresh, bold food that your guests will be talking about long after the last dance. Relaxed service, serious flavour — exactly what your celebration deserves.</p>
       <a href="#contact" class="btn btn-primary">Get A Quote</a>
@@ -1410,6 +1436,10 @@
 
     <!-- Festivals & Markets -->
     <div class="event-card reveal reveal-delay-1">
+      <div class="event-card-icon" aria-hidden="true">
+        <!-- music / flag -->
+        <svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+      </div>
       <h3 class="event-card-title">Festivals & Markets</h3>
       <p>Fully equipped for high-volume festival catering. We've done the big stages and we know how to run a busy service. Fast, consistent, and always good — even at volume.</p>
       <a href="#contact" class="btn btn-primary">Get A Quote</a>
@@ -1417,6 +1447,10 @@
 
     <!-- Private & Corporate -->
     <div class="event-card reveal reveal-delay-2">
+      <div class="event-card-icon" aria-hidden="true">
+        <!-- briefcase -->
+        <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="12"/><path d="M2 12h20"/></svg>
+      </div>
       <h3 class="event-card-title">Private Events & Corporate</h3>
       <p>Birthday, corporate lunch, private party, pop-up — if you need quality food for a crowd, we've got you. Bespoke menus, reliable service, and Danilo's personality in every dish.</p>
       <a href="#contact" class="btn btn-primary">Get A Quote</a>
