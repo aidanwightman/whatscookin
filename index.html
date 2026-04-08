@@ -129,6 +129,37 @@
       background-size: 200px 200px;
     }
 
+    /* ── SCROLL VELOCITY MARQUEE ─────────────────────────────────────────── */
+    .sv-band {
+      overflow: hidden;
+      background: rgba(15,15,15,0.97);
+      border-top: 1px solid rgba(255,213,46,0.25);
+      border-bottom: 1px solid rgba(255,213,46,0.25);
+      padding: 0.5rem 0;
+    }
+    .sv-row {
+      overflow: hidden;
+      white-space: nowrap;
+      padding: 0.35rem 0;
+    }
+    .sv-scroller {
+      display: inline-flex;
+      white-space: nowrap;
+      will-change: transform;
+    }
+    .sv-scroller span {
+      font-family: 'Fredoka One', sans-serif;
+      font-size: 1.3rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      padding: 0 2.5rem;
+    }
+    .sv-scroller span .sv-dot {
+      color: var(--accent-red);
+      margin: 0 0.5rem;
+    }
+
     /* Horizontal accent stripe between major sections */
     .stripe-divider {
       width: 100%;
@@ -1197,7 +1228,32 @@
   </div>
 </section>
 
-<div class="stripe-divider"></div>
+<div class="sv-band" aria-hidden="true">
+  <div class="sv-row" id="sv-row-0">
+    <div class="sv-scroller">
+      <span>WHAT'S COOKIN <span class="sv-dot">•</span> PORTOBELLO MARKET</span>
+      <span>WHAT'S COOKIN <span class="sv-dot">•</span> PORTOBELLO MARKET</span>
+      <span>WHAT'S COOKIN <span class="sv-dot">•</span> PORTOBELLO MARKET</span>
+      <span>WHAT'S COOKIN <span class="sv-dot">•</span> PORTOBELLO MARKET</span>
+      <span>WHAT'S COOKIN <span class="sv-dot">•</span> PORTOBELLO MARKET</span>
+      <span>WHAT'S COOKIN <span class="sv-dot">•</span> PORTOBELLO MARKET</span>
+      <span>WHAT'S COOKIN <span class="sv-dot">•</span> PORTOBELLO MARKET</span>
+      <span>WHAT'S COOKIN <span class="sv-dot">•</span> PORTOBELLO MARKET</span>
+    </div>
+  </div>
+  <div class="sv-row" id="sv-row-1">
+    <div class="sv-scroller">
+      <span>WHAT'S COOKIN <span class="sv-dot">•</span> PORTOBELLO MARKET</span>
+      <span>WHAT'S COOKIN <span class="sv-dot">•</span> PORTOBELLO MARKET</span>
+      <span>WHAT'S COOKIN <span class="sv-dot">•</span> PORTOBELLO MARKET</span>
+      <span>WHAT'S COOKIN <span class="sv-dot">•</span> PORTOBELLO MARKET</span>
+      <span>WHAT'S COOKIN <span class="sv-dot">•</span> PORTOBELLO MARKET</span>
+      <span>WHAT'S COOKIN <span class="sv-dot">•</span> PORTOBELLO MARKET</span>
+      <span>WHAT'S COOKIN <span class="sv-dot">•</span> PORTOBELLO MARKET</span>
+      <span>WHAT'S COOKIN <span class="sv-dot">•</span> PORTOBELLO MARKET</span>
+    </div>
+  </div>
+</div>
 <!-- ═══════════════════════════════════════════════════════════════════════════
      FOOD SHOWCASE
 ═══════════════════════════════════════════════════════════════════════════ -->
@@ -1588,6 +1644,78 @@
       if (heroVideo.currentTime >= 11) heroVideo.currentTime = 0;
     });
   }
+
+  // ── SCROLL VELOCITY MARQUEE ────────────────────────────────────────────────
+  (function() {
+    const VELOCITY = 80;
+    const rows = [
+      { id: 'sv-row-0', baseVelocity:  VELOCITY },
+      { id: 'sv-row-1', baseVelocity: -VELOCITY }
+    ];
+
+    let lastScrollY = window.scrollY;
+    let rawVelocity = 0;
+    let smoothVelocity = 0;
+
+    window.addEventListener('scroll', () => {
+      rawVelocity = (window.scrollY - lastScrollY) * 60;
+      lastScrollY = window.scrollY;
+    }, { passive: true });
+
+    function wrap(min, max, v) {
+      const range = max - min;
+      return (((v - min) % range) + range) % range + min;
+    }
+
+    const state = rows.map(r => {
+      const el = document.getElementById(r.id);
+      const scroller = el?.querySelector('.sv-scroller');
+      const firstSpan = el?.querySelector('span');
+      return {
+        scroller,
+        copyWidth: firstSpan?.offsetWidth || 0,
+        baseX: 0,
+        directionFactor: 1,
+        baseVelocity: r.baseVelocity
+      };
+    });
+
+    window.addEventListener('resize', () => {
+      rows.forEach((r, i) => {
+        const el = document.getElementById(r.id);
+        const firstSpan = el?.querySelector('span');
+        if (firstSpan) state[i].copyWidth = firstSpan.offsetWidth;
+      });
+    });
+
+    let lastTs = null;
+    function animate(ts) {
+      const delta = lastTs ? Math.min(ts - lastTs, 50) : 16;
+      lastTs = ts;
+
+      // Spring toward raw velocity, then decay
+      smoothVelocity += (rawVelocity - smoothVelocity) * (1 - Math.exp(-8 * delta / 1000));
+      rawVelocity *= Math.exp(-3 * delta / 1000);
+
+      const velocityFactor = Math.max(-5, Math.min(5, smoothVelocity / 200));
+
+      state.forEach(s => {
+        if (!s.scroller || s.copyWidth === 0) return;
+
+        if (velocityFactor < 0) s.directionFactor = -1;
+        else if (velocityFactor > 0) s.directionFactor = 1;
+
+        let moveBy = s.directionFactor * s.baseVelocity * (delta / 1000);
+        moveBy += s.directionFactor * moveBy * velocityFactor;
+
+        s.baseX += moveBy;
+        s.scroller.style.transform = `translateX(${wrap(-s.copyWidth, 0, s.baseX)}px)`;
+      });
+
+      requestAnimationFrame(animate);
+    }
+    requestAnimationFrame(animate);
+  })();
 
   // ── NAV: scroll shrink + mobile hamburger ─────────────────────────────────
   const nav = document.getElementById('main-nav');
