@@ -7,7 +7,7 @@
   <meta name="description" content="What's Cookin is Danilo's street food stall at Portobello Market, Notting Hill. Fresh, bold food for events, weddings, festivals and private parties across London." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
 
   <style>
     /* ─── RESET & BASE ─────────────────────────────────────────────────────── */
@@ -30,8 +30,9 @@
     :root {
       --bg-primary: #1a1a1a;
       --bg-secondary: #242424;
-      --accent: #e8650a;
-      --accent-hover: #d4580a;
+      --accent: #FFD52E;
+      --accent-hover: #e6c000;
+      --accent-red: #CC2222;
       --cream: #f5f0e8;
       --text-light: #f0ebe2;
       --text-muted: #a89880;
@@ -40,14 +41,14 @@
 
     /* ─── TYPOGRAPHY HELPERS ───────────────────────────────────────────────── */
     .headline {
-      font-family: 'Barlow Condensed', sans-serif;
+      font-family: 'Fredoka One', sans-serif;
       font-weight: 800;
       line-height: 1.05;
       letter-spacing: -0.01em;
       text-transform: uppercase;
     }
     .label {
-      font-family: 'Barlow Condensed', sans-serif;
+      font-family: 'Fredoka One', sans-serif;
       font-weight: 500;
       letter-spacing: 0.15em;
       text-transform: uppercase;
@@ -60,7 +61,7 @@
       align-items: center;
       gap: 0.5rem;
       padding: 0.85rem 1.75rem;
-      font-family: 'Barlow Condensed', sans-serif;
+      font-family: 'Fredoka One', sans-serif;
       font-weight: 700;
       font-size: 1rem;
       letter-spacing: 0.08em;
@@ -72,7 +73,7 @@
     .btn:active { transform: scale(0.97); }
     .btn-primary {
       background: var(--accent);
-      color: #fff;
+      color: #1a1a1a;
     }
     .btn-primary:hover { background: var(--accent-hover); }
     .btn-outline {
@@ -131,7 +132,7 @@
     .stripe-divider {
       width: 100%;
       height: 3px;
-      background: linear-gradient(to right, transparent 0%, rgba(232,101,10,0.5) 20%, rgba(232,101,10,0.8) 50%, rgba(232,101,10,0.5) 80%, transparent 100%);
+      background: linear-gradient(to right, transparent 0%, rgba(255,213,46,0.5) 20%, rgba(255,213,46,0.8) 50%, rgba(255,213,46,0.5) 80%, transparent 100%);
       position: relative;
       z-index: 3;
     }
@@ -196,7 +197,7 @@
       justify-content: space-between;
     }
     .nav-logo {
-      font-family: 'Barlow Condensed', sans-serif;
+      font-family: 'Fredoka One', sans-serif;
       font-weight: 800;
       font-size: 1.45rem;
       letter-spacing: 0.04em;
@@ -210,7 +211,7 @@
       gap: 2.25rem;
     }
     .nav-links a {
-      font-family: 'Barlow Condensed', sans-serif;
+      font-family: 'Fredoka One', sans-serif;
       font-weight: 500;
       font-size: 0.95rem;
       letter-spacing: 0.1em;
@@ -254,7 +255,7 @@
     }
     .mobile-menu.open { display: flex; }
     .mobile-menu a {
-      font-family: 'Barlow Condensed', sans-serif;
+      font-family: 'Fredoka One', sans-serif;
       font-weight: 600;
       font-size: 1.1rem;
       letter-spacing: 0.1em;
@@ -337,7 +338,7 @@
       margin-bottom: 1.25rem;
       color: var(--cream);
     }
-    .hero-title .accent-word { color: var(--accent); }
+    .hero-title .accent-word { color: var(--accent-red); }
     .hero-sub {
       font-size: clamp(1.05rem, 2.5vw, 1.3rem);
       color: var(--text-muted);
@@ -375,7 +376,7 @@
       opacity: 0.45;
     }
     .scroll-indicator span {
-      font-family: 'Barlow Condensed', sans-serif;
+      font-family: 'Fredoka One', sans-serif;
       font-size: 0.7rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
@@ -461,7 +462,7 @@
       padding: 1.25rem;
     }
     .food-card-name {
-      font-family: 'Barlow Condensed', sans-serif;
+      font-family: 'Fredoka One', sans-serif;
       font-weight: 700;
       font-size: 1.4rem;
       text-transform: uppercase;
@@ -527,7 +528,7 @@
     }
     .event-card:hover { background: #2c2c2c; }
     .event-card-title {
-      font-family: 'Barlow Condensed', sans-serif;
+      font-family: 'Fredoka One', sans-serif;
       font-weight: 700;
       font-size: 1.6rem;
       text-transform: uppercase;
@@ -557,7 +558,7 @@
       text-align: center;
     }
     .trust-stat .number {
-      font-family: 'Barlow Condensed', sans-serif;
+      font-family: 'Fredoka One', sans-serif;
       font-weight: 800;
       font-size: clamp(2rem, 4vw, 3rem);
       color: var(--accent);
@@ -569,7 +570,7 @@
       color: var(--text-muted);
       text-transform: uppercase;
       letter-spacing: 0.08em;
-      font-family: 'Barlow Condensed', sans-serif;
+      font-family: 'Fredoka One', sans-serif;
       font-weight: 500;
     }
 
@@ -703,7 +704,7 @@
       background: var(--accent);
       color: #fff;
       padding: 1.25rem 1.5rem;
-      font-family: 'Barlow Condensed', sans-serif;
+      font-family: 'Fredoka One', sans-serif;
       font-weight: 700;
       font-size: 0.85rem;
       text-transform: uppercase;
@@ -820,7 +821,7 @@
       right: 1rem;
       background: var(--accent);
       color: #fff;
-      font-family: 'Barlow Condensed', sans-serif;
+      font-family: 'Fredoka One', sans-serif;
       font-weight: 700;
       font-size: 0.8rem;
       letter-spacing: 0.1em;
@@ -880,7 +881,7 @@
       font-weight: 500;
     }
     .testimonial-author span {
-      font-family: 'Barlow Condensed', sans-serif;
+      font-family: 'Fredoka One', sans-serif;
       font-size: 0.8rem;
       letter-spacing: 0.1em;
       text-transform: uppercase;
@@ -933,7 +934,7 @@
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
     .form-group { display: flex; flex-direction: column; gap: 0.45rem; }
     .form-group label {
-      font-family: 'Barlow Condensed', sans-serif;
+      font-family: 'Fredoka One', sans-serif;
       font-weight: 500;
       font-size: 0.8rem;
       letter-spacing: 0.12em;
@@ -1008,7 +1009,7 @@
     }
     .footer-brand { max-width: 280px; }
     .footer-logo {
-      font-family: 'Barlow Condensed', sans-serif;
+      font-family: 'Fredoka One', sans-serif;
       font-weight: 800;
       font-size: 1.5rem;
       letter-spacing: 0.04em;
@@ -1028,7 +1029,7 @@
       flex-wrap: wrap;
     }
     .footer-nav-group h4 {
-      font-family: 'Barlow Condensed', sans-serif;
+      font-family: 'Fredoka One', sans-serif;
       font-weight: 600;
       font-size: 0.75rem;
       letter-spacing: 0.15em;
