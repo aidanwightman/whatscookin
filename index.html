@@ -656,24 +656,49 @@
     .slideshow .slide:nth-child(4) { background-image: url('images/food-2.jpg'); animation-delay: 9s; }
 
     /* ── EVENTS CTA BANNER ───────────────────────────────────────────────── */
+    @keyframes orb-pulse {
+      0%, 100% { transform: translate(-50%, -50%) scale(1);    opacity: 0.18; }
+      50%       { transform: translate(-50%, -50%) scale(1.18); opacity: 0.28; }
+    }
+    @keyframes btn-shimmer {
+      0%   { left: -80%; }
+      100% { left: 130%; }
+    }
+    @keyframes pill-float {
+      0%, 100% { transform: translateY(0px); }
+      50%       { transform: translateY(-5px); }
+    }
+
     .events-cta-banner {
       position: relative;
-      padding: 5rem 0;
+      padding: 6rem 0 5rem;
       text-align: center;
       overflow: hidden;
     }
-    /* Graded overlay: deep dark bottom + orange warmth */
     .events-cta-banner::before {
       content: '';
       position: absolute;
       inset: 0;
       background:
-        linear-gradient(to bottom, rgba(10,5,0,0.55) 0%, rgba(20,8,0,0.72) 100%),
-        linear-gradient(135deg, rgba(232,101,10,0.45) 0%, rgba(180,60,0,0.25) 60%, transparent 100%);
+        linear-gradient(to bottom, rgba(10,5,0,0.5) 0%, rgba(20,8,0,0.78) 100%),
+        linear-gradient(135deg, rgba(232,101,10,0.4) 0%, rgba(180,60,0,0.2) 60%, transparent 100%);
       z-index: 1;
     }
+    /* Pulsing glow orb behind content */
+    .events-cta-banner::after {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 520px; height: 520px;
+      background: radial-gradient(circle, rgba(255,213,46,0.2) 0%, transparent 70%);
+      border-radius: 50%;
+      z-index: 1;
+      pointer-events: none;
+      animation: orb-pulse 4s ease-in-out infinite;
+    }
     .events-cta-banner .slideshow .slide {
-      filter: sepia(40%) contrast(1.1) brightness(0.65) saturate(1.2);
+      filter: sepia(40%) contrast(1.1) brightness(0.55) saturate(1.2);
     }
     .events-cta-banner .container {
       position: relative;
@@ -682,12 +707,73 @@
     .events-cta-banner h2 {
       font-size: clamp(2rem, 5vw, 3.5rem);
       color: #fff;
-      margin-bottom: 1.5rem;
-      text-shadow: 0 2px 20px rgba(0,0,0,0.6);
+      margin-bottom: 1.25rem;
+      text-shadow: 0 2px 30px rgba(0,0,0,0.7);
     }
-    .events-cta-banner .btn-dark {
-      font-size: 1rem;
+    /* Floating pill tags */
+    .cta-pills {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-bottom: 2.25rem;
     }
+    .cta-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.35rem 0.9rem;
+      border: 1px solid rgba(255,213,46,0.35);
+      border-radius: 999px;
+      background: rgba(255,213,46,0.08);
+      color: rgba(255,255,255,0.75);
+      font-family: 'Fredoka One', sans-serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      backdrop-filter: blur(4px);
+      animation: pill-float 3s ease-in-out infinite;
+    }
+    .cta-pill:nth-child(2) { animation-delay: 0.5s; }
+    .cta-pill:nth-child(3) { animation-delay: 1s; }
+    .cta-pill:nth-child(4) { animation-delay: 1.5s; }
+    .cta-pill .pill-dot {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+    /* CTA button */
+    .btn-cta {
+      position: relative;
+      overflow: hidden;
+      background: var(--accent);
+      color: #000;
+      font-size: 1.05rem;
+      padding: 1rem 2.5rem;
+      letter-spacing: 0.12em;
+      transition: background 0.2s, box-shadow 0.3s, transform 0.15s;
+    }
+    .btn-cta::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -80%;
+      width: 50%; height: 100%;
+      background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.35) 50%, transparent 70%);
+      transform: skewX(-20deg);
+      animation: btn-shimmer 2.8s ease-in-out infinite;
+    }
+    .btn-cta:hover {
+      background: var(--accent-hover);
+      box-shadow: 0 0 28px rgba(255,213,46,0.45), 0 0 6px rgba(255,213,46,0.2);
+      transform: scale(1.03);
+    }
+    .btn-cta .btn-arrow {
+      display: inline-block;
+      margin-left: 0.5rem;
+      transition: transform 0.2s;
+    }
+    .btn-cta:hover .btn-arrow { transform: translateX(4px); }
 
     /* ── GLOBAL FIXED BACKGROUND SLIDESHOW ──────────────────────────────── */
     .page-bg {
@@ -1304,7 +1390,13 @@
     </div>
     <div class="container">
       <h2 class="headline reveal">Got an event coming up?<br />Let's talk.</h2>
-      <a href="#contact" class="btn btn-dark reveal reveal-delay-1">Book A Consultation</a>
+      <div class="cta-pills reveal reveal-delay-1">
+        <span class="cta-pill"><span class="pill-dot"></span>Weddings</span>
+        <span class="cta-pill"><span class="pill-dot"></span>Festivals</span>
+        <span class="cta-pill"><span class="pill-dot"></span>Private Events</span>
+        <span class="cta-pill"><span class="pill-dot"></span>Corporate</span>
+      </div>
+      <a href="#contact" class="btn btn-cta reveal reveal-delay-2">Book A Consultation <span class="btn-arrow">→</span></a>
     </div>
   </div>
 
