@@ -1167,7 +1167,7 @@
 ═══════════════════════════════════════════════════════════════════════════ -->
 <section id="hero" aria-label="Hero">
   <div class="hero-bg">
-    <video autoplay muted loop playsinline>
+    <video id="hero-video" autoplay muted playsinline>
       <source src="videos/vid-1.mp4" type="video/mp4">
     </video>
   </div>
@@ -1580,6 +1580,14 @@
      JAVASCRIPT
 ═══════════════════════════════════════════════════════════════════════════ -->
 <script>
+  // ── HERO VIDEO: loop first 11 seconds ─────────────────────────────────────
+  const heroVideo = document.getElementById('hero-video');
+  if (heroVideo) {
+    heroVideo.addEventListener('timeupdate', () => {
+      if (heroVideo.currentTime >= 11) heroVideo.currentTime = 0;
+    });
+  }
+
   // ── NAV: scroll shrink + mobile hamburger ─────────────────────────────────
   const nav = document.getElementById('main-nav');
   const hamburger = document.querySelector('.hamburger');
