@@ -339,6 +339,26 @@
       color: var(--cream);
     }
     .hero-title .accent-word { color: var(--accent-red); }
+    .speech-bubble {
+      display: inline-block;
+      background: rgba(255, 213, 46, 0.15);
+      border: 2px solid rgba(255, 213, 46, 0.25);
+      border-radius: 60px;
+      padding: 1.75rem 3rem 1.25rem;
+      position: relative;
+      margin-bottom: 1.75rem;
+    }
+    .speech-bubble::after {
+      content: '';
+      position: absolute;
+      bottom: -34px;
+      left: 80px;
+      width: 0;
+      height: 0;
+      border-left: 14px solid transparent;
+      border-right: 28px solid transparent;
+      border-top: 34px solid rgba(255, 213, 46, 0.15);
+    }
     .hero-sub {
       font-size: clamp(1.05rem, 2.5vw, 1.3rem);
       color: var(--text-muted);
@@ -1156,9 +1176,11 @@
       <div class="hero-eyebrow reveal">
         <span class="label" style="color: var(--text-muted);">Portobello Market, Notting Hill</span>
       </div>
-      <h1 class="headline hero-title reveal reveal-delay-1">
-        What's<br /><span class="accent-word">Cookin?</span>
-      </h1>
+      <div class="speech-bubble reveal reveal-delay-1">
+        <h1 class="headline hero-title">
+          What's<br /><span class="accent-word">Cookin?</span>
+        </h1>
+      </div>
       <p class="hero-sub reveal reveal-delay-2">
         Fresh street food. Bold flavours. Come eat at the market or bring Danilo to your next event.
       </p>
