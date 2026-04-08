@@ -218,6 +218,19 @@
     }
     .nav-links a:hover { color: var(--accent); }
     .nav-links a.active { color: var(--accent); }
+    @keyframes nav-events-glow {
+      0%, 100% { box-shadow: 0 0 6px rgba(255,213,46,0.3); }
+      50%       { box-shadow: 0 0 14px rgba(255,213,46,0.7); }
+    }
+    .nav-events {
+      color: var(--accent) !important;
+      background: rgba(255,213,46,0.12);
+      border: 1px solid rgba(255,213,46,0.35);
+      border-radius: 4px;
+      padding: 0.3rem 0.75rem !important;
+      animation: nav-events-glow 2.5s ease-in-out infinite;
+    }
+    .nav-events:hover { background: rgba(255,213,46,0.2) !important; }
     .nav-links .btn {
       padding: 0.55rem 1.25rem;
       font-size: 0.9rem;
@@ -516,7 +529,7 @@
       <a href="index.html" class="nav-logo">What's <span>Cookin</span></a>
       <ul class="nav-links" role="list">
         <li><a href="index.html#food">Food</a></li>
-        <li><a href="events.html">Events</a></li>
+        <li><a href="events.html" class="nav-events">Events</a></li>
         <li><a href="about.html" class="active">About</a></li>
         <li><a href="index.html#find-us">Find Us</a></li>
         <li><a href="index.html#contact" class="btn btn-primary">Book Now</a></li>
@@ -528,7 +541,7 @@
   </div>
   <div class="mobile-menu" role="list">
     <a href="index.html#food" role="listitem">Food</a>
-    <a href="events.html" role="listitem">Events</a>
+    <a href="events.html" class="nav-events" role="listitem">Events</a>
     <a href="about.html" role="listitem" style="color: var(--accent);">About</a>
     <a href="index.html#find-us" role="listitem">Find Us</a>
     <a href="index.html#contact" class="btn btn-primary" role="listitem">Book Now</a>
@@ -653,7 +666,7 @@
           <h4>Navigate</h4>
           <ul>
             <li><a href="index.html#food">Food</a></li>
-            <li><a href="events.html">Events</a></li>
+            <li><a href="events.html" class="nav-events">Events</a></li>
             <li><a href="about.html">About</a></li>
             <li><a href="index.html#find-us">Find Us</a></li>
             <li><a href="index.html#contact">Contact</a></li>
